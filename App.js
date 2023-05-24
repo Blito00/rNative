@@ -1,47 +1,29 @@
+
+
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { FontAwesome5,  Ionicons, MaterialIcons, Octicons, AntDesign } from '@expo/vector-icons'
-import ListaDesplegable from './src/views/list.jsx';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { NavigationContainer } from '@react-navigation/native';
+import Home from './src/views/Home';
+import GamesList from './src/views/GamesList';
 
 
 export default function App() {
+  // instanciamos nuestro Stack que nos ayudara para crear la navegacion y las pantallas
+  const Stack = createNativeStackNavigator();
+
   return (
-    <View style={styles.container}>
-      <Text  style={styles.text}>Bienvenido.</Text>
+    <>
+      <NavigationContainer>
+
+        <Stack.Navigator initialRouteName="home">
+
+<Stack.Screen name="home" component={Home}/>
+
+<Stack.Screen name="gamesList" component={GamesList}/>
+
+        </Stack.Navigator>
+      </NavigationContainer>
       <StatusBar style="auto" />
-
-
-    <View  style={styles.view1}>
-    <TouchableOpacity onPress={console.log('holis')}>
-    <AntDesign name="down" color={"green"} size={20} />
-    
-    </TouchableOpacity>
-    <ListaDesplegable/>
-    </View>
-
-    </View>
+    </>
   );
 }
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#ffff',
-    alignItems:'center',
-    justifyContent: 'center',
-    fontFamily: 'Roboto',
-  },
-
-  view1:{
-  position: 'relative',
-  top: -350,
-
-  },
-  text:{
-    fontWeight: 'bold',
-    top:-350,
-    fontSize: 25,
-    
-  }
-});
-
-
